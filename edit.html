@@ -1,0 +1,116 @@
+
+<script src="js/file-upload/ng-file-upload-shim.min.js"></script>
+<script src="js/file-upload/ng-file-upload.min.js"></script>
+
+<div class="row toolbar">
+    <div class="col-xs-1 col-sm-1  col-lg-1 toolbar-buttons toolbar-buttons-left">
+        <a href="home" class="toolbar-button"><i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i></a>
+    </div>
+    <div class="toolbar-text-main col-xs-8 col-sm-6">
+        {{project.id ? 'Edytuj Projekt' : 'Dodaj projekt'}}
+    </div>
+    <div class="col-xs-3 col-sm-5 toolbar-buttons">
+        <a ng-class="{toolbarDisabled : !project.name}" ng-click="project.name && submit()" class="toolbar-button"><i class="fa fa-check fa-fw" aria-hidden="true"></i><span
+                class="toolbar-text">Zapisz </span></a>
+        <span class="divider"></span>
+        <a ng-if="project.id" ng-click="delete()" class="toolbar-button"><i class="fa fa-trash fa-fw" aria-hidden="true"></i><span
+                class="toolbar-text">Usuń </span></a>
+    </div>
+</div>
+<form name="form">
+    <div class="row" style="padding-top: 16px">
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4 col-lg-offset-2">
+
+            <label for="title">Nazwa projektu (obowiązkowe)</label>
+            <input id="title" class="form-control form-custom" type="text" placeholder="Nazwa projektu" ng-model="project.name" ng-required="required"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4">
+
+            <label for="tags">Tagi (odziel je przecinkami)</label>
+            <input id="tags" class="form-control form-custom" type="text" placeholder="Tagi" ng-model="project.tags"/>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4 col-lg-offset-2">
+
+            <label for="title">Rok wykonania </label>
+            <input id="year" class="form-control form-custom" type="number" min="1900" placeholder="Rok" ng-model="project.year"/>
+
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4">
+
+            <label for="location">Miejsce </label>
+            <input id="location" class="form-control form-custom" type="text" placeholder="Miejsce" ng-model="project.location"/>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4 col-lg-offset-2">
+
+            <label for="project_type">Typ projektu </label>
+            <input id="project_type" class="form-control form-custom" type="text" placeholder="Typ projektu" ng-model="project.project_type"/>
+
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4">
+
+            <label for="type">Typ budynku </label>
+            <input id="type" class="form-control form-custom" type="text" placeholder="Typ budynku" ng-model="project.type"/>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4 col-lg-offset-2">
+
+            <label for="architect">Architekt </label>
+            <input id="architect" class="form-control form-custom" type="text" placeholder="Architekt" ng-model="project.architect"/>
+
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4">
+
+            <label for="executive">Wykonawca </label>
+            <input id="executive" class="form-control form-custom" type="text" placeholder="Wykonawca" ng-model="project.executive"/>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4 col-lg-offset-2">
+
+            <label for="style">Styl </label>
+            <input id="style" class="form-control form-custom" type="text" placeholder="Styl" ng-model="project.style"/>
+
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4">
+
+            <label for="measurement">Metraż </label>
+            <input id="measurement" class="form-control form-custom" type="number" min="0" step="0.01" placeholder="Metraż" ng-model="project.measurement"/>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4 col-lg-offset-2">
+
+            <label for="price">Cena </label>
+            <input id="price" class="form-control form-custom" type="text" min="0" step="0.01" placeholder="Cena" ng-model="project.price"/>
+
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-lg-4">
+
+            <label for="imgs">Zdjęcia </label>
+            <br/><button class="btn btn-default btn-custom" id="imgs" style="height: 34px; width: 100%; text-align: center;" ngf-select ng-model="files" ngf-max-size="2MB" ngf-accept="'image/*'" multiple="multiple">Dodaj zdjęcia</button>
+        </div>
+    </div>
+    <div class="row col-lg-offset-2 col-lg-8">
+        <div style="padding-bottom: 20px" class="col-xs-6 col-sm-4 col-lg-4" ng-repeat="img in project.imgs track by $index">
+            <img style="width: 100%" ng-src={{img}}>
+            <button class="btn btn-default btn-bottom btn-custom" style="width: 100%" ng-click="deleteImg($index);$event.stopPropagation();"><i class="fa fa-trash" aria-hidden="true"></i> Usuń</button>
+        </div>
+        <div style="padding-bottom: 20px" class="col-xs-6 col-sm-4 col-lg-4" ng-repeat="file in files track by $index">
+            <img style="width: 100%" ngf-thumbnail="file">
+            <button class="btn btn-default btn-bottom btn-custom" style="width: 100%" ng-click="deleteFile($index);$event.stopPropagation();"><i class="fa fa-trash" aria-hidden="true"></i> Usuń</button>
+        </div>
+    </div>
+</form>
+<div id="loadingSpinner" ng-if="loading">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+</div>

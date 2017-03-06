@@ -1,0 +1,76 @@
+<div class="row toolbar">
+    <div class="search-container col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search fa-fw" aria-hidden="true"></i></span>
+            <input autofocus type="text" class="form-control" placeholder="Wyszukaj..." ng-model="search_phase">
+        </div>
+    </div>
+    <div class="col-xs-1 col-sm-2  col-lg-3 toolbar-buttons">
+        <a href="add-project" class="toolbar-button"><i class="fa fa-plus fa-fw" aria-hidden="true"></i><span
+                class="toolbar-text">Dodaj </span></a>
+    </div>
+</div>
+<div class="row">
+    <ul>
+        <li class="repeated-item col-lg-3 col-md-4 col-sm-6 col-xs-12"
+            ng-repeat="(id, project) in projectsFactory.projects | tagFilter:search_phase">
+            <div id="{{project.id}}" class="element" ng-click="expand(project, project.id)">
+                <div class="inside-container">
+                    <i class="closeBtn fa fa-times" aria-hidden="true"></i>
+                    <img ng-repeat="img in project.imgs track by $index" ng-class="{mainImg: $first}" ng-src={{img}}
+                         alt="">
+                    <div class="nav" ng-class="{showNav : project.imgs.length > 1}">
+                        <i class="nav-item fa fa-arrow-left fa-2x"></i>
+                        <i class="nav-item fa fa-arrow-right fa-2x"></i>
+                    </div>
+                    <div class="text">
+                        <h4 class="center" style="font-weight: bold">
+                            {{project.name || "brak"}} <a ng-click="$event.stopPropagation();"
+                                                          href="edit/{{project.id}}"><i
+                                class="hideOnExpand fa fa-edit"></i></a><br/>
+                            <small class="tags">{{project.keywords.join(', ') || " "}}</small>
+                        </h4>
+                        <table style="width: 100%">
+                            <tr>
+                                <td>Rok wykonania:</td>
+                                <td class="right">{{project.year || "brak"}}</td>
+                            </tr>
+                            <tr class="onlyExpanded">
+                                <td>Miejsce:</td>
+                                <td class="right">{{project.location || "brak"}}</td>
+                            </tr>
+                            <tr class="onlyExpanded">
+                                <td>Typ:</td>
+                                <td class="right">{{project.project_type || "brak"}}</td>
+                            </tr>
+                            <tr class="onlyExpanded">
+                                <td>Wykonawca:</td>
+                                <td class="right">{{project.executive || "brak"}}</td>
+                            </tr>
+                            <tr class="onlyExpanded">
+                                <td>Architekt:</td>
+                                <td class="right">{{project.architect || "brak"}}</td>
+                            </tr>
+                            <tr class="onlyExpanded">
+                                <td>Typ budynku:</td>
+                                <td class="right">{{project.type || "brak"}}</td>
+                            </tr>
+                            <tr class="onlyExpanded">
+                                <td>Styl:</td>
+                                <td class="right">{{project.style || "brak"}}</td>
+                            </tr>
+                            <tr class="onlyExpanded">
+                                <td>Metraż:</td>
+                                <td class="right">{{project.measurement || "brak"}} m<sup>2</sup></td>
+                            </tr>
+                            <tr>
+                                <td><h4>Cena:</h4></td>
+                                <td class="right"><h4>{{project.price || "brak"}} PLN</h4></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

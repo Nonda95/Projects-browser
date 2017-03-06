@@ -1,0 +1,353 @@
+body {
+    overflow-y: scroll;
+    background: #fafafa;
+}
+
+.divider {
+    width: 8px;
+    height: 1px;
+    display: inline-block;
+}
+
+.toolbar {
+    box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.4);
+    background-color: white;
+}
+
+.toolbar-text-main {
+    line-height: 2em;
+    font-size: 1.95em;
+    height: 2em;
+    color: rgba(103, 103, 103, 1);
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+.toolbar-text {
+    padding-right: 4px;
+}
+
+.search-container {
+    padding-bottom: 16px;
+    padding-top: 16px;
+}
+
+.toolbar-buttons-left {
+    text-align: center !important;
+}
+
+.toolbar-buttons {
+    padding: 16px;
+    font-size: 1.3em;
+    text-align: right;
+}
+
+a.toolbar-button {
+    height: 3em;
+    line-height: 3em;
+    border-radius: 4px;
+    color: rgba(103, 103, 103, 1);
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: background-color 0.2s;
+}
+
+.toolbar-button:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.center {
+    text-align: center;
+}
+
+.search-container > .input-group {
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    box-shadow: none;
+    height: 3em;
+    background: rgba(0, 0, 0, .1);
+}
+
+.search-container > .input-group > .input-group-addon {
+    border: none;
+    background: none;
+    padding-right: 0;
+    color: rgba(103, 103, 103, 0.75);
+}
+
+.search-container > .input-group > .form-control {
+    border: none;
+    height: 3em;
+    box-shadow: none;
+    font-size: 1.3em;
+    background: none;
+    color: rgba(103, 103, 103, 0.75);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+ul li {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.element {
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.inside-container {
+    text-align: center;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    margin: auto;
+    max-width: 850px;
+    height: 100%;
+}
+
+#expanded .inside-container {
+    overflow: auto;
+}
+
+#expanded {
+    z-index: 998;
+    overflow: hidden;
+    position: fixed;
+    top: 1% !important;
+    left: 1% !important;
+    width: 98% !important;
+    height: 98% !important;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    cursor: default;
+}
+
+.element:hover {
+    border-radius: 6px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.element .text {
+    width: 100%;
+    text-align: left;
+    padding: 8px;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+}
+
+.onlyExpanded {
+    display: none;
+}
+
+#expanded .onlyExpanded {
+    display: table-row;
+}
+
+.element .closeBtn {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+}
+
+#expanded .closeBtn {
+    display: block;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.element img {
+    opacity: 0;
+    position: absolute;
+    display: none;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 80%;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+}
+
+#expanded img {
+    display: inline-block;
+}
+
+.element .mainImg {
+    position: relative !important;
+    display: inline-block !important;
+    opacity: 1;
+}
+
+.nav {
+    display: none;
+    z-index: 999;
+}
+
+.nav > i {
+    width: 40%;
+    line-height: 30px;
+    height: 30px;
+}
+
+.nav-item {
+    cursor: pointer;
+}
+
+#expanded .showNav {
+    display: block;
+}
+
+#expanded .mainImg {
+    opacity: 0;
+}
+
+#expanded #activeImg {
+    opacity: 1;
+}
+
+#expanded img {
+    max-height: 50%;
+}
+
+#expanded .hideOnExpand {
+    display: none;
+}
+
+#collapsing {
+    z-index: 998;
+}
+
+#shade {
+    display: none;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.8);
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.toolbarDisabled {
+    color: rgba(103, 103, 103, 0.5) !important;
+    cursor: not-allowed !important;
+}
+
+.toolbarDisabled:hover {
+    background-color: inherit;
+}
+
+#loadingSpinner {
+    z-index: 11;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 40%;
+    bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    color: #FFFFFF;
+}
+
+.btn-bottom {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.btn-custom {
+    outline: none !important;
+}
+
+.form-custom {
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.right {
+    text-align: right;
+}
+
+.repeated-item.ng-enter, .repeated-item.ng-move {
+    transition: all 0.3s linear;
+    opacity: 0;
+}
+
+.repeated-item.ng-enter.ng-enter-active,
+.repeated-item.ng-move.ng-move-active {
+    opacity: 1;
+}
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.repeated-item.ng-leave {
+    animation: 0.3s my_animation;
+}
+
+@keyframes my_animation_reverse {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes my_animation {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align: center;
+}
+
+.col-centered {
+    display: inline-block;
+    float: none;
+    /* reset the text-align */
+    text-align: left;
+    /* inline-block space fix */
+    margin-right: -4px;
+}
+
+@media all and (max-width: 767px) {
+    .toolbar-text {
+        display: none;
+    }
+
+    .toolbar-buttons {
+        padding-right: 4px;
+        padding-left: 4px;
+    }
+
+    .divider {
+        width: 4px;
+    }
+}
